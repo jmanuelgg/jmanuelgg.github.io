@@ -4,13 +4,261 @@
  <title>apuntes de POO</title>
  <link href="http://git.juangonzalez.com.es/atom.xml" rel="self"/>
  <link href="http://git.juangonzalez.com.es/"/>
- <updated>2014-03-26T23:21:18+01:00</updated>
+ <updated>2014-03-26T23:26:48+01:00</updated>
  <id>http://git.juangonzalez.com.es</id>
  <author>
    <name>Juan González</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Tema 2</title>
+   <link href="http://git.juangonzalez.com.es/2014/03/26/tema-2/"/>
+   <updated>2014-03-26T00:00:00+01:00</updated>
+   <id>http://git.juangonzalez.com.es/2014/03/26/tema-2</id>
+   <content type="html">&lt;p&gt;Title: Capítulo 2
+Date: 17-02-2014
+Publish: true&lt;/p&gt;
+
+&lt;h2&gt;Capítulo 2&lt;/h2&gt;
+
+&lt;h1&gt;Comprender las definiciones de clases&lt;/h1&gt;
+
+&lt;p&gt;Elementos básicos de las definiciones de una clase: &lt;em&gt;campos&lt;/em&gt;, &lt;em&gt;constructores&lt;/em&gt; y &lt;em&gt;métodos&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3&gt;2.1 Máquina expendedora de boletos&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;public class MaquinaDeBoletos  
+{
+    // El precio de un boleto de esta Máquina
+    private int precio;
+    // La cantidad de dinero ingresada hasta ahora por un cliente
+    private int saldo;
+    // La cantidad total de dinero recaudada en esta Máquina
+    private int total;
+    /*
+    * Crea una Máquina que vende boletos de un determinado precio.
+    * /
+    public MaquinaDeBoletos(int precioDelBoleto)
+    {
+        precio = precioDelBoleto;
+        saldo = 0;  // el constructor
+        total = 0;
+    }
+    /*
+    * Devuelve el precio de un boleto.
+    * /
+    public int obtenerPrecio()
+    {
+        return precio;
+    }
+    /*
+    * Devuelve la cantidad de dinero que ya se ingresó para el siguiente boleto.
+    * /
+    public int obtenerSaldo()
+    {
+        return saldo;
+    }
+    /*
+    * Recibe del cliente una cantidad de dinero en centavos.
+    * /
+    public void ingresarDinero(int cantidad)
+    {
+        saldo = saldo + cantidad;
+    }
+    /* 
+    * Imprime un boleto.
+    * Actualiza el total de dinero recolectado y pone el saldo a cero.
+    * /
+    public void imprimirBoleto()
+    {
+        // Simula la impresión de un boleto.
+        System.out.println(&amp;quot;################&amp;quot;);
+        System.out.println(&amp;quot; Línea Blue &amp;quot;);
+        System.out.println(&amp;quot;# &amp;quot; + precio + &amp;quot; cvos.&amp;quot;);
+        System.out.println(&amp;quot;################&amp;quot;);
+        System.out.println();
+        //Actualiza el total recaudado con el saldo.
+        total = total + saldo;
+        // Limpia el saldo.
+        saldo = 0;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2.2 Campos, constructores y métodos&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Los campos almacenan datos para que cada objeto los use.&lt;/li&gt;
+&lt;li&gt;Los constructores permiten que cada objeto se prepare adecuadamente cuando es creado.&lt;/li&gt;
+&lt;li&gt;Los métodos implementan el comportamiento de los objetos.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Campos&lt;/strong&gt;&lt;br&gt;
+Los campos también son conocidos como &lt;em&gt;variables de instancia&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los &lt;strong&gt;campos&lt;/strong&gt; almacenan datos para que un objeto los use. Los campos también son conocidos como variables de instancia.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Constructores&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Inicialización&lt;/em&gt;: el constructor inicializa el objeto en un estado razonable. Uno de los rasgos distintivos de los constructores es que tienen el mismo nombre que la clase en la que son definidos, en este caso como &lt;code&gt;MaquinaDeBoletos&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los &lt;strong&gt;constructores&lt;/strong&gt; permiten que cada objeto sea preparado adecuadamente cuando es creado.&lt;/p&gt;
+
+&lt;h3&gt;2.3 Pasar datos mediante parámetros&lt;/h3&gt;
+
+&lt;p&gt;La manera en que los constructores y los métodos reciben valores es mediante sus &lt;em&gt;parámetros&lt;/em&gt;.  &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;public MaquinaDeBoletos(int precioDelBoleto)&lt;/code&gt;  &lt;/p&gt;
+
+&lt;p&gt;Este constructor tirne un sólo parámetro, &lt;code&gt;precioDelBoleto&lt;/code&gt;, que es del tipo &lt;code&gt;int&lt;/code&gt;, del mismo tipo que el campo &lt;code&gt;precio&lt;/code&gt; que se usará para determinar el precio del boleto.&lt;br&gt;
+Distinguimos entre nombres de los parámetros dentro de un constructor o un método, y valores de los parámetros fuera de un constructor o un método: hacemos referencia a los nombres como &lt;em&gt;parámetros formales&lt;/em&gt; y a los valores como &lt;em&gt;parámetros actuales&lt;/em&gt;.&lt;br&gt;
+Por lo tanto &lt;code&gt;precioDelBoleto&lt;/code&gt; es un parámetro formal y el valor ingresado por el usuario es un parámetro actual.&lt;/p&gt;
+
+&lt;h3&gt;2.4 Asignación&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Las &lt;strong&gt;sentencias de asignación&lt;/strong&gt; almacenan el valor representado por el lado derecho de la sentencia en una variable nombrada a la izquierda.&lt;/p&gt;
+
+&lt;h3&gt;2.5 Métodos de acceso&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los métodos se componen de dos partes: un encabezado y un cuerpo.&lt;br&gt;
+Cualquier conjunto de declaraciones y sentencias, ubicado entre un par de llaves, es conocido como &lt;em&gt;bloque&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Existen, por lo menos, dos diferencias significativas entre las signaturas del constructor &lt;code&gt;MaquinaDeBoletos&lt;/code&gt; y del método &lt;code&gt;obtenerPrecio&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;public MaquinaDeBoletos(int precioDelBoleto)
+public int obtenerPrecio()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;El método tiene un &lt;em&gt;tipo de retorno&lt;/em&gt; &lt;code&gt;int&lt;/code&gt; pero el constructor no tiene tipo de retorno. El tipo de retorno se escribe exactamente antes del nombre del método.&lt;/li&gt;
+&lt;li&gt;El constructor tiene un solo parámetro formal, &lt;code&gt;precioDelBoleto&lt;/code&gt;, pero el método no tiene ninguno, sólo un par de paréntesis vacíos.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Es una regla de Java que el constructor no puede tener ningún tipo de retorno.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los &lt;strong&gt;métodos de acceso&lt;/strong&gt; devuelven información sobre el estado de un objeto.&lt;/p&gt;
+
+&lt;h3&gt;2.6 Métodos de modificación&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los &lt;strong&gt;métodos de modificación&lt;/strong&gt; cambian el estado de un objeto.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nota: convenciones Java sobre métodos de acceso y de modificación&lt;/strong&gt; En Java, los nombres de los métodos de acceso suelen comenzar con la palabra &amp;quot;get&amp;quot; en lugar de la palabra &amp;quot;obtener&amp;quot; y los nombres de los métodos de modificación, con la palabra &amp;quot;set&amp;quot; en lugar de &amp;quot;poner&amp;quot;.&lt;/p&gt;
+
+&lt;h3&gt;2.7 Imprimir desde métodos&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; El método &lt;code&gt;System.out.println&lt;/code&gt; imprime su parámetro de la terminal de texto.&lt;br&gt;
+Cuando se usa el símbolo &amp;quot;+&amp;quot; entre una cadena y cualquier otra cosa, este símbolo es un operador de concatenación de cadenas.&lt;/p&gt;
+
+&lt;h3&gt;2.8. Hacer elecciones: la sentencia cindicional&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;public void ingresarDinero(int cantidad)
+{
+    if (cantidad &amp;gt; 0) {
+        saldo = saldo + cantidad;
+    }
+    else {
+        System.out.println(&amp;quot;Debe ingresar una cantidad positiva: &amp;quot; + cantidad);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Una &lt;strong&gt;sentencia condicional&lt;/strong&gt; realiza una de las acciones posibles basándose en el resultado de una prueba.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Las &lt;strong&gt;expresiones booleanas&lt;/strong&gt; tienen sólo dos valores posibles: verdadero o falso. Se las encuentra comunmente controlando la elección entre los dos caminos posibles de una sentencia condicional.&lt;/p&gt;
+
+&lt;h3&gt;2.9 Variables locales&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Una &lt;strong&gt;variable local&lt;/strong&gt; es una variable que se declara y se usa dentro de un solo método. Sua alcance y tiempo de vida se limitan a los del método.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;public int reintegrarSaldo()
+{
+    int cantidadAReintegrar;
+    cantidadAReintegra = saldo;
+    saldo = 0;
+    return cantidadAReintegrar;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Es muy común inicializar variables locales cuando se las declara, por lo que podriamos abreviar las dos primeras sentencias de &lt;code&gt;reintegrarSaldo&lt;/code&gt; de la siguiente manera:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;int cantidadAReintegrar = saldo;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Las declaraciones de las variables locales son muy similares a las declaraciones de los campos pero las palabras &lt;code&gt;private&lt;/code&gt; o &lt;code&gt;publiac&lt;/code&gt; forman parte de ellas. Tal y como los parámetros formales, las variables locales tienen un alcance que está limitado a las sentencias del método al que pertenecen. Su tiempo de vida es el tiempo de la ejecución del método: se crean cuando se invoca un método y se destruyen cuando el método termina. Los constructores también pueden tener variables locales.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Una variable local del mismo nombre que un campo evitará que el campo sea acedido dentro de un método.&lt;/p&gt;
+
+&lt;h3&gt;2.10 Campos, parámetros y variables locales&lt;/h3&gt;
+
+&lt;p&gt;Tres tipos diferentes de variables: campos, parámetros formales y variables locales.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Las tres clases de variables pueden almacenar un valor acorde a su definición de tipo de dato.&lt;/li&gt;
+&lt;li&gt;Los campos se definen fuera de los constructores y de los métodos.&lt;/li&gt;
+&lt;li&gt;Los campos se usan para almacenar datos que persisten durante la vida del objeto, de esta manera mantienen el estado actual de un objeto. Tienen un tiempo de vida que finaliza cuando termina el objeto.&lt;/li&gt;
+&lt;li&gt;El alcance de los campos es la clase: la accesibilidad de los campos se extiende a toda la clase y por este motivo pueden usarse dentro de cualquier constructor o método de clase en la que estén definidos.&lt;/li&gt;
+&lt;li&gt;Como son definidos como privados (&lt;code&gt;private&lt;/code&gt;), los campos no pueden ser accedidos desde el exterior de la clase.&lt;/li&gt;
+&lt;li&gt;Los parámetros formales y las variables locales persisten en el lapso durante el cual se ejecuta un constructor o un método. Su tiempo de vida es tan largo como una llamada, por lo que sus valores se pierden entre las llamadas. Por este motivo, actuan como lugares de almacenamiento temporales antes que permanentes.&lt;/li&gt;
+&lt;li&gt;Los parámetros formales se definen en el encabezado de un constructor o de un método. reciben sus valores desde el exterior, se inicializan con los valores de los parámetros actuales que forman parte de la llamada al constructor o al método.&lt;/li&gt;
+&lt;li&gt;Los parámetros formales tienen un alcance limitado a su definición de constructor o de método.&lt;/li&gt;
+&lt;li&gt;Los variables locales se declaran dentro del cuerpo de un constructor o de un método. Pueden ser inicializadas y usadas solamente dentro del cuerpo de las definiciones de constructores o métodos. Las variables locales deben ser inicializadas antes de ser usadas en una expresión, no tienen un valor por defecto.&lt;/li&gt;
+&lt;li&gt;Las variables locales tienen un alcance limitado al bloque en el que son declaradas. No son accesibles desde ningún lugar fuera de ese bloque.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Tema 1</title>
+   <link href="http://git.juangonzalez.com.es/2014/03/25/tema-1/"/>
+   <updated>2014-03-25T00:00:00+01:00</updated>
+   <id>http://git.juangonzalez.com.es/2014/03/25/tema-1</id>
+   <content type="html">&lt;p&gt;Title: Capítulo 1
+Date: 17-02-2014
+Publish: true&lt;/p&gt;
+
+&lt;h2&gt;Capítulo 1&lt;/h2&gt;
+
+&lt;h1&gt;Objetos y clases&lt;/h1&gt;
+
+&lt;h3&gt;1.1 Objetos y clases&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los Objetos Java modelan objetos que provienen del dominio de un problema.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los objetos se crean a partir de clases. La clase describe la categoria del objeto. Los objetos representan casos individuales de una clase.&lt;br&gt;
+Generalmente, cuando nos referimos a un objeto en particular hablamos de una &lt;em&gt;instancia&lt;/em&gt;. De aquí en adelante usaremos regularmente el término &amp;quot;instancia&amp;quot;. Instancia es casi un sinónimo de objeto. Nos referimos a objetos como instancias cuando queremos enfatizar que son de una clase en particular.&lt;/p&gt;
+
+&lt;h3&gt;1.2 Crear objetos&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Convención&lt;/strong&gt; Los nombres de las clases comienzan con una letra mayúscula y los nombres de los objetos con las letras minúsculas.&lt;/p&gt;
+
+&lt;h3&gt;1.3 Invocar métodos&lt;/h3&gt;
+
+&lt;p&gt;Los elementos del menú contextual del círculo representan las operaciones que se pueden usar para manipular un círculo. En Java, estas operaciones se denominan &lt;em&gt;métodos&lt;/em&gt;. Usando la terminología común, decimos que estos métodos son &lt;em&gt;llamados&lt;/em&gt; o &lt;em&gt;invocados&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Podemos comunicarnos con los objetos invocando sus métodos. Generalmente, los objetos hacen algo cuando invocamos un método.&lt;/p&gt;
+
+&lt;h3&gt;1.4 Parámetros&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los métodos pueden tener &lt;em&gt;parámetros&lt;/em&gt; para proporcionar información adicional para realizar una tarea. Para cada parámetros se define un &lt;em&gt;tipo&lt;/em&gt; y un &lt;em&gt;nombre&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; El encabezado de un método se denomina su &lt;em&gt;signatura&lt;/em&gt; y proporciona la información necesaria para invocarlo.&lt;/p&gt;
+
+&lt;h3&gt;1.5 Tipos de dato&lt;/h3&gt;
+
+&lt;p&gt;Un tipo especifica la naturaleza del dato que debe pasarse a un parámetro.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los parámetros tienen tipos de dato. El tipo de dato define la clase de valores que un parámetros puede tomar.&lt;/p&gt;
+
+&lt;h3&gt;1.6 Estado&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto&lt;/strong&gt; Los objetos tienen un estado. El estado está representado por los valores almacenados en sus campos.&lt;/p&gt;
+
+&lt;h3&gt;1.7 Valores de retorno&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Concepto Resultados&lt;/strong&gt; Los métodos pueden devolver información de algún objeto mediante un &lt;strong&gt;valor de retorno&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Resumen&lt;/h3&gt;
+
+&lt;p&gt;Los objetos son especificados por las clases. Las clases representan el concepto general de uan cosa, mientras que los objetos representan instancias concretas de una clase, podemos tener varios objetos de una clase.&lt;/p&gt;
+
+&lt;p&gt;Los objetos tienen métodos que podemos usar para comunicarnos con ellos. Podemos usar un método para modificar al objeto para obtener información acerca de él. Los métodos pueden tener parámetros y los parámetros pueden tener tipos. Los métodos pueden tener tipos de retorno que especifican el tipo de dato que devuelven. Si el tipo de retorno es &lt;code&gt;void&lt;/code&gt;, el método no devuelve nada.&lt;/p&gt;
+
+&lt;p&gt;Los objetos almacenan datos en sus campos (que también tienen tipos). Se hace referencia al conjunto de todos los datos de un objeto como el estado del objeto.&lt;/p&gt;
+
+&lt;p&gt;Los objetos se crean a partir de las definiciones de una clase que deben escribirse en un lenguaje particular de programación. Gran parte de la programación en Java consiste en aprender a escribir definiciones de clases.&lt;/p&gt;
+</content>
+ </entry>
  
 
 </feed>
