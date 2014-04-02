@@ -10,7 +10,7 @@
 
   <title>
     
-      apuntes de POO &middot; apuntes de POO
+      Inicio &middot; apuntes de POO
     
   </title>
 
@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="/public/css/lanyon.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
 
-  <!-- Icons -->
+  <!-- Icons
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel="shortcut icon" href="/public/favicon.ico"> -->
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
@@ -42,7 +42,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="/">Home</a>
+    <a class="sidebar-nav-item active" href="/">Inicio</a>
 
     
 
@@ -58,6 +58,10 @@
         
       
     
+      
+    
+      
+        
       
     
       
@@ -99,67 +103,199 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2014/03/25/tema-1/">
-        Tema 1
+      <a href="/2014/03/26/tema-2/">
+        Tema 2
       </a>
     </h1>
 
-    <span class="post-date">25 Mar 2014</span>
+    <span class="post-date">26 Mar 2014</span>
 
-    <p>Title: Capítulo 1
-Date: 17-02-2014
-Publish: true</p>
+    <h2>Capítulo 2</h2>
 
-<h2>Capítulo 1</h2>
+<h1>Comprender las definiciones de clases</h1>
 
-<h1>Objetos y clases</h1>
+<p>Elementos básicos de las definiciones de una clase: <em>campos</em>, <em>constructores</em> y <em>métodos</em>.</p>
 
-<h3>1.1 Objetos y clases</h3>
+<h3>2.1 Máquina expendedora de boletos</h3>
 
-<p><strong>Concepto</strong> Los Objetos Java modelan objetos que provienen del dominio de un problema.</p>
+<div class="highlight"><pre><code class="java"> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MaquinaDeBoletos</span>  
+    <span class="o">{</span>
+        <span class="c1">// El precio de un boleto de esta Máquina</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">precio</span><span class="o">;</span>
+        <span class="c1">// La cantidad de dinero ingresada hasta ahora por un cliente</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">saldo</span><span class="o">;</span>
+        <span class="c1">// La cantidad total de dinero recaudada en esta Máquina</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">total</span><span class="o">;</span>
+        <span class="o">/*</span>
+        <span class="o">*</span> <span class="n">Crea</span> <span class="n">una</span> <span class="n">M</span><span class="err">á</span><span class="n">quina</span> <span class="n">que</span> <span class="n">vende</span> <span class="n">boletos</span> <span class="n">de</span> <span class="n">un</span> <span class="n">determinado</span> <span class="n">precio</span><span class="o">.</span>
+        <span class="o">*</span> <span class="o">/</span>
+        <span class="kd">public</span> <span class="nf">MaquinaDeBoletos</span><span class="o">(</span><span class="kt">int</span> <span class="n">precioDelBoleto</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">precio</span> <span class="o">=</span> <span class="n">precioDelBoleto</span><span class="o">;</span>
+            <span class="n">saldo</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// el constructor</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="o">/*</span>
+        <span class="o">*</span> <span class="n">Devuelve</span> <span class="n">el</span> <span class="n">precio</span> <span class="n">de</span> <span class="n">un</span> <span class="n">boleto</span><span class="o">.</span>
+        <span class="o">*</span> <span class="o">/</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">obtenerPrecio</span><span class="o">()</span>
+        <span class="o">{</span>
+            <span class="k">return</span> <span class="n">precio</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="o">/*</span>
+        <span class="o">*</span> <span class="n">Devuelve</span> <span class="n">la</span> <span class="n">cantidad</span> <span class="n">de</span> <span class="n">dinero</span> <span class="n">que</span> <span class="n">ya</span> <span class="n">se</span> <span class="n">ingres</span><span class="err">ó</span> <span class="n">para</span> <span class="n">el</span> <span class="n">siguiente</span> <span class="n">boleto</span><span class="o">.</span>
+        <span class="o">*</span> <span class="o">/</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">obtenerSaldo</span><span class="o">()</span>
+        <span class="o">{</span>
+            <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="o">/*</span>
+        <span class="o">*</span> <span class="n">Recibe</span> <span class="n">del</span> <span class="n">cliente</span> <span class="n">una</span> <span class="n">cantidad</span> <span class="n">de</span> <span class="n">dinero</span> <span class="n">en</span> <span class="n">centavos</span><span class="o">.</span>
+        <span class="o">*</span> <span class="o">/</span>
+            <span class="o">*</span>    <span class="kd">public</span> <span class="kt">void</span> <span class="n">ingresarDinero</span><span class="o">(</span><span class="kt">int</span> <span class="n">cantidad</span><span class="o">)</span>
+                <span class="o">*</span>    <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span> <span class="o">+</span> <span class="n">cantidad</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="o">/*</span> 
+                <span class="o">*</span> <span class="n">Imprime</span> <span class="n">un</span> <span class="n">boleto</span><span class="o">.</span>
+                    <span class="o">*</span>    <span class="o">*</span> <span class="n">Actualiza</span> <span class="n">el</span> <span class="n">total</span> <span class="n">de</span> <span class="n">dinero</span> <span class="n">recolectado</span> <span class="n">y</span> <span class="n">pone</span> <span class="n">el</span> <span class="n">saldo</span> <span class="n">a</span> <span class="n">cero</span><span class="o">.</span>
+        <span class="o">*</span> <span class="o">/</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">imprimirBoleto</span><span class="o">()</span>
+        <span class="o">{</span>
+            <span class="c1">// Simula la impresión de un boleto.</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;################&quot;</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot; Línea Blue &quot;</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;# &quot;</span> <span class="o">+</span> <span class="n">precio</span> <span class="o">+</span> <span class="s">&quot; cvos.&quot;</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;################&quot;</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+            <span class="c1">//Actualiza el total recaudado con el saldo.</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">saldo</span><span class="o">;</span>
+            <span class="c1">// Limpia el saldo.</span>
+            <span class="n">saldo</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div>
 
-<p><strong>Concepto</strong> Los objetos se crean a partir de clases. La clase describe la categoria del objeto. Los objetos representan casos individuales de una clase.<br>
-Generalmente, cuando nos referimos a un objeto en particular hablamos de una <em>instancia</em>. De aquí en adelante usaremos regularmente el término &quot;instancia&quot;. Instancia es casi un sinónimo de objeto. Nos referimos a objetos como instancias cuando queremos enfatizar que son de una clase en particular.</p>
+<h3>2.2 Campos, constructores y métodos</h3>
 
-<h3>1.2 Crear objetos</h3>
+<ul>
+<li>Los campos almacenan datos para que cada objeto los use.</li>
+<li>Los constructores permiten que cada objeto se prepare adecuadamente cuando es creado.</li>
+<li>Los métodos implementan el comportamiento de los objetos.</li>
+</ul>
 
-<p><strong>Convención</strong> Los nombres de las clases comienzan con una letra mayúscula y los nombres de los objetos con las letras minúsculas.</p>
+<p><strong>Campos</strong><br>
+Los campos también son conocidos como <em>variables de instancia</em>.</p>
 
-<h3>1.3 Invocar métodos</h3>
+<p><strong>Concepto</strong> Los <strong>campos</strong> almacenan datos para que un objeto los use. Los campos también son conocidos como variables de instancia.</p>
 
-<p>Los elementos del menú contextual del círculo representan las operaciones que se pueden usar para manipular un círculo. En Java, estas operaciones se denominan <em>métodos</em>. Usando la terminología común, decimos que estos métodos son <em>llamados</em> o <em>invocados</em>.</p>
+<p><strong>Constructores</strong><br>
+<em>Inicialización</em>: el constructor inicializa el objeto en un estado razonable. Uno de los rasgos distintivos de los constructores es que tienen el mismo nombre que la clase en la que son definidos, en este caso como <code>MaquinaDeBoletos</code>.</p>
 
-<p><strong>Concepto</strong> Podemos comunicarnos con los objetos invocando sus métodos. Generalmente, los objetos hacen algo cuando invocamos un método.</p>
+<p><strong>Concepto</strong> Los <strong>constructores</strong> permiten que cada objeto sea preparado adecuadamente cuando es creado.</p>
 
-<h3>1.4 Parámetros</h3>
+<h3>2.3 Pasar datos mediante parámetros</h3>
 
-<p><strong>Concepto</strong> Los métodos pueden tener <em>parámetros</em> para proporcionar información adicional para realizar una tarea. Para cada parámetros se define un <em>tipo</em> y un <em>nombre</em>.</p>
+<p>La manera en que los constructores y los métodos reciben valores es mediante sus <em>parámetros</em>.  </p>
 
-<p><strong>Concepto</strong> El encabezado de un método se denomina su <em>signatura</em> y proporciona la información necesaria para invocarlo.</p>
+<div class="highlight"><pre><code class="java"> 
+    <span class="err">`</span><span class="kd">public</span> <span class="n">MaquinaDeBoletos</span><span class="o">(</span><span class="kt">int</span> <span class="n">precioDelBoleto</span><span class="o">)</span><span class="err">`</span>  
+</code></pre></div>
 
-<h3>1.5 Tipos de dato</h3>
+<p>Este constructor tirne un sólo parámetro, <code>precioDelBoleto</code>, que es del tipo <code>int</code>, del mismo tipo que el campo <code>precio</code> que se usará para determinar el precio del boleto.<br>
+Distinguimos entre nombres de los parámetros dentro de un constructor o un método, y valores de los parámetros fuera de un constructor o un método: hacemos referencia a los nombres como <em>parámetros formales</em> y a los valores como <em>parámetros actuales</em>.<br>
+Por lo tanto <code>precioDelBoleto</code> es un parámetro formal y el valor ingresado por el usuario es un parámetro actual.</p>
 
-<p>Un tipo especifica la naturaleza del dato que debe pasarse a un parámetro.</p>
+<h3>2.4 Asignación</h3>
 
-<p><strong>Concepto</strong> Los parámetros tienen tipos de dato. El tipo de dato define la clase de valores que un parámetros puede tomar.</p>
+<p><strong>Concepto</strong> Las <strong>sentencias de asignación</strong> almacenan el valor representado por el lado derecho de la sentencia en una variable nombrada a la izquierda.</p>
 
-<h3>1.6 Estado</h3>
+<h3>2.5 Métodos de acceso</h3>
 
-<p><strong>Concepto</strong> Los objetos tienen un estado. El estado está representado por los valores almacenados en sus campos.</p>
+<p><strong>Concepto</strong> Los métodos se componen de dos partes: un encabezado y un cuerpo.<br>
+Cualquier conjunto de declaraciones y sentencias, ubicado entre un par de llaves, es conocido como <em>bloque</em>.</p>
 
-<h3>1.7 Valores de retorno</h3>
+<p>Existen, por lo menos, dos diferencias significativas entre las signaturas del constructor <code>MaquinaDeBoletos</code> y del método <code>obtenerPrecio</code>:</p>
 
-<p><strong>Concepto Resultados</strong> Los métodos pueden devolver información de algún objeto mediante un <strong>valor de retorno</strong>.</p>
+<div class="highlight"><pre><code class="java">     <span class="kd">public</span> <span class="nf">MaquinaDeBoletos</span><span class="o">(</span><span class="kt">int</span> <span class="n">precioDelBoleto</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">obtenerPrecio</span><span class="o">()</span>
+</code></pre></div>
 
-<h3>Resumen</h3>
+<ul>
+<li>El método tiene un <em>tipo de retorno</em> <code>int</code> pero el constructor no tiene tipo de retorno. El tipo de retorno se escribe exactamente antes del nombre del método.</li>
+<li>El constructor tiene un solo parámetro formal, <code>precioDelBoleto</code>, pero el método no tiene ninguno, sólo un par de paréntesis vacíos.</li>
+</ul>
 
-<p>Los objetos son especificados por las clases. Las clases representan el concepto general de uan cosa, mientras que los objetos representan instancias concretas de una clase, podemos tener varios objetos de una clase.</p>
+<p>Es una regla de Java que el constructor no puede tener ningún tipo de retorno.</p>
 
-<p>Los objetos tienen métodos que podemos usar para comunicarnos con ellos. Podemos usar un método para modificar al objeto para obtener información acerca de él. Los métodos pueden tener parámetros y los parámetros pueden tener tipos. Los métodos pueden tener tipos de retorno que especifican el tipo de dato que devuelven. Si el tipo de retorno es <code>void</code>, el método no devuelve nada.</p>
+<p><strong>Concepto</strong> Los <strong>métodos de acceso</strong> devuelven información sobre el estado de un objeto.</p>
 
-<p>Los objetos almacenan datos en sus campos (que también tienen tipos). Se hace referencia al conjunto de todos los datos de un objeto como el estado del objeto.</p>
+<h3>2.6 Métodos de modificación</h3>
 
-<p>Los objetos se crean a partir de las definiciones de una clase que deben escribirse en un lenguaje particular de programación. Gran parte de la programación en Java consiste en aprender a escribir definiciones de clases.</p>
+<p><strong>Concepto</strong> Los <strong>métodos de modificación</strong> cambian el estado de un objeto.</p>
+
+<p><strong>Nota: convenciones Java sobre métodos de acceso y de modificación</strong> En Java, los nombres de los métodos de acceso suelen comenzar con la palabra &quot;get&quot; en lugar de la palabra &quot;obtener&quot; y los nombres de los métodos de modificación, con la palabra &quot;set&quot; en lugar de &quot;poner&quot;.</p>
+
+<h3>2.7 Imprimir desde métodos</h3>
+
+<p><strong>Concepto</strong> El método <code>System.out.println</code> imprime su parámetro de la terminal de texto.<br>
+Cuando se usa el símbolo &quot;+&quot; entre una cadena y cualquier otra cosa, este símbolo es un operador de concatenación de cadenas.</p>
+
+<h3>2.8. Hacer elecciones: la sentencia cindicional</h3>
+
+<div class="highlight"><pre><code class="java">     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ingresarDinero</span><span class="o">(</span><span class="kt">int</span> <span class="n">cantidad</span><span class="o">)</span>
+            <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">cantidad</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">=</span> <span class="n">saldo</span> <span class="o">+</span> <span class="n">cantidad</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">else</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Debe ingresar una cantidad positiva: &quot;</span> <span class="o">+</span> <span class="n">cantidad</span><span class="o">);</span>
+                    <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div>
+
+<p><strong>Concepto</strong> Una <strong>sentencia condicional</strong> realiza una de las acciones posibles basándose en el resultado de una prueba.</p>
+
+<p><strong>Concepto</strong> Las <strong>expresiones booleanas</strong> tienen sólo dos valores posibles: verdadero o falso. Se las encuentra comunmente controlando la elección entre los dos caminos posibles de una sentencia condicional.</p>
+
+<h3>2.9 Variables locales</h3>
+
+<p><strong>Concepto</strong> Una <strong>variable local</strong> es una variable que se declara y se usa dentro de un solo método. Sua alcance y tiempo de vida se limitan a los del método.</p>
+
+<div class="highlight"><pre><code class="java">     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">reintegrarSaldo</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">cantidadAReintegrar</span><span class="o">;</span>
+        <span class="n">cantidadAReintegra</span> <span class="o">=</span> <span class="n">saldo</span><span class="o">;</span>
+        <span class="n">saldo</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+                <span class="k">return</span> <span class="n">cantidadAReintegrar</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div>
+
+<p>Es muy común inicializar variables locales cuando se las declara, por lo que podriamos abreviar las dos primeras sentencias de <code>reintegrarSaldo</code> de la siguiente manera:</p>
+
+<div class="highlight"><pre><code class="java">     <span class="kt">int</span> <span class="n">cantidadAReintegrar</span> <span class="o">=</span> <span class="n">saldo</span><span class="o">;</span>
+</code></pre></div>
+
+<p>Las declaraciones de las variables locales son muy similares a las declaraciones de los campos pero las palabras <code>private</code> o <code>publiac</code> forman parte de ellas. Tal y como los parámetros formales, las variables locales tienen un alcance que está limitado a las sentencias del método al que pertenecen. Su tiempo de vida es el tiempo de la ejecución del método: se crean cuando se invoca un método y se destruyen cuando el método termina. Los constructores también pueden tener variables locales.</p>
+
+<p><strong>Concepto</strong> Una variable local del mismo nombre que un campo evitará que el campo sea acedido dentro de un método.</p>
+
+<h3>2.10 Campos, parámetros y variables locales</h3>
+
+<p>Tres tipos diferentes de variables: campos, parámetros formales y variables locales.</p>
+
+<ul>
+<li>Las tres clases de variables pueden almacenar un valor acorde a su definición de tipo de dato.</li>
+<li>Los campos se definen fuera de los constructores y de los métodos.</li>
+<li>Los campos se usan para almacenar datos que persisten durante la vida del objeto, de esta manera mantienen el estado actual de un objeto. Tienen un tiempo de vida que finaliza cuando termina el objeto.</li>
+<li>El alcance de los campos es la clase: la accesibilidad de los campos se extiende a toda la clase y por este motivo pueden usarse dentro de cualquier constructor o método de clase en la que estén definidos.</li>
+<li>Como son definidos como privados (<code>private</code>), los campos no pueden ser accedidos desde el exterior de la clase.</li>
+<li>Los parámetros formales y las variables locales persisten en el lapso durante el cual se ejecuta un constructor o un método. Su tiempo de vida es tan largo como una llamada, por lo que sus valores se pierden entre las llamadas. Por este motivo, actuan como lugares de almacenamiento temporales antes que permanentes.</li>
+<li>Los parámetros formales se definen en el encabezado de un constructor o de un método. reciben sus valores desde el exterior, se inicializan con los valores de los parámetros actuales que forman parte de la llamada al constructor o al método.</li>
+<li>Los parámetros formales tienen un alcance limitado a su definición de constructor o de método.</li>
+<li>Los variables locales se declaran dentro del cuerpo de un constructor o de un método. Pueden ser inicializadas y usadas solamente dentro del cuerpo de las definiciones de constructores o métodos. Las variables locales deben ser inicializadas antes de ser usadas en una expresión, no tienen un valor por defecto.</li>
+<li>Las variables locales tienen un alcance limitado al bloque en el que son declaradas. No son accesibles desde ningún lugar fuera de ese bloque.</li>
+</ul>
 
   </div>
   
@@ -167,11 +303,11 @@ Generalmente, cuando nos referimos a un objeto en particular hablamos de una <em
 
 <div class="pagination">
   
-    <span class="pagination-item older">Older</span>
+    <a class="pagination-item older" href="/page3">Anterior</a>
   
   
     
-      <a class="pagination-item newer" href="/">Newer</a>
+      <a class="pagination-item newer" href="/">Posterior</a>
     
   
 </div>
